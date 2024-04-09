@@ -1,0 +1,275 @@
+
+entity ItemVeiculo {
+	descricaoItem String
+    registroAtivo Boolean
+}
+
+entity TipoOcorrencia {
+	descricaoTipoOcorrencia String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity TipoVeiculo {
+	siglaVeiculo String
+	descricaoVeiculo String
+}
+
+entity MotivoOcorrencia {
+	descricaoMotivoOcorrencia String
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity MunicipioIbge {
+	nomeMunicipio String
+}
+
+entity UfIbge {
+	nomeUf String
+}
+
+entity Bairro {
+	nomeBairro String
+}
+
+entity StatusOcorrencia {
+	descricaoStatus String
+}
+
+entity OrigemOcorrencia {
+	nomeOrigem String
+}
+
+entity MotivoCancelamento {
+	descricaoMotivoCancelamento String
+}
+
+entity Veiculo {
+	descricaoVeiculo String
+    observacao String
+    placaVeiculo String
+    dataCadastro Instant
+    statusVeiculo String
+}
+
+entity TipoLigacao {
+	nomeTipoLigacao String
+}
+
+entity ClassificacaoRisco {
+	descricaoRisco String
+    corClassificacao String
+}
+
+entity Distrito {
+	nomeDistrito String
+    dataHoraCadastro Instant
+}
+
+entity TipoMotivoOcorrencia {
+	descricao String
+}
+
+entity MotivoIndisponibilidade {
+	descricaoMotivoIndisponibilidade String
+}
+
+entity ItemTipoVeiculo {
+	registroValido Boolean
+}
+
+entity ClassificacaoVitima {
+	nomeClassificacao String
+}
+
+entity Sexo {
+	descricao String
+}
+
+entity VeiculoIndisponivel {
+	observacaoIndisponibilidade String
+    dataHoraInicioIndisponibilidade Instant
+    dataHoraFimIndisponibilidade Instant
+}
+
+entity Ocorrencia {
+	dddOcorrencia String
+    telefoneOcorrencia String
+    solicitante String
+    motivoQueixa String
+    apelidoOcorrencia String
+    cep String
+    logadouro String
+    tipoLogadouro String
+    numeroLogadouro String
+    complementoLogadouro String
+    numeroVitima Long
+    mensagemOcorrencia String
+    dataHoraInicioOcorrencia Instant
+    dataHoraFimOcorrencia Instant
+    ocorrenciaRegulada Boolean
+}
+
+entity VeiculoOcorrencia {
+    dataHoraEnvioEquipe Instant
+    dataHoraSaidaBase Instant
+    dataHoraChegadaLocal Instant
+    dataHoraChegadaDestino Instant
+    dataHoraSaidaDestino Instant
+    dataHoraRetornoBase Instant
+}
+
+entity Vitima {
+    nomeCompletoVitima String
+    idade Long
+    tipoIdade String
+    dataNascimento Instant
+    numeroDocumento String
+    orgaoEmissor String
+    cartaoNascionalSaude String
+    cep String
+    logadouro String
+    bairroLogadouro String
+    numeroLogadouro String
+    complementoLogadouro String
+}
+
+entity Avaliacao {
+	orientacaoAvaliacao String
+    dataHoraInclusao Instant
+}
+
+entity UnidadeDestino {
+	descricaoUnidade String
+}
+
+entity TipoLogradouro {
+	sigla String
+    descricaoTipoLogradouro String
+}
+
+entity DecisaoTecnica {
+	registroAtivo Boolean
+    descricaoDecisaoTecnica String
+    observacoes String
+    situacaoDecisao String
+    dataHoraInclusao Instant
+}
+
+entity Intercorrencias {
+	registroAtivo Boolean
+    descricaoIntercorrencias String
+}
+
+entity VitimaAvaliacaoOrientacao {
+	orientacaoAvaliacao Boolean
+    dataHoraInclusao Instant
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    UfIbge to MunicipioIbge
+}
+
+relationship OneToMany {
+    MunicipioIbge to Bairro
+    MunicipioIbge to Distrito
+}
+
+relationship OneToMany {
+    TipoVeiculo to Veiculo
+    TipoVeiculo to ItemTipoVeiculo
+}
+
+relationship OneToMany {
+    MotivoOcorrencia to TipoMotivoOcorrencia
+}
+
+relationship OneToMany {
+    TipoOcorrencia to TipoMotivoOcorrencia
+}
+
+relationship OneToMany {
+    ItemVeiculo to ItemTipoVeiculo
+}
+
+relationship OneToMany {
+    Veiculo to VeiculoIndisponivel
+    Veiculo to VeiculoOcorrencia
+}
+
+relationship OneToMany {
+    MotivoIndisponibilidade to VeiculoIndisponivel
+}
+
+relationship OneToMany {
+    TipoLigacao to Ocorrencia
+}
+
+relationship OneToMany {
+    Bairro to Ocorrencia
+}
+
+relationship OneToMany {
+    ClassificacaoRisco to Ocorrencia
+}
+
+relationship OneToMany {
+    TipoMotivoOcorrencia to Ocorrencia
+}
+
+relationship OneToMany {
+    StatusOcorrencia to Ocorrencia
+}
+
+relationship OneToMany {
+    MotivoCancelamento to Ocorrencia
+}
+
+relationship OneToMany {
+    OrigemOcorrencia to Ocorrencia
+}
+
+relationship OneToMany {
+    Ocorrencia to VeiculoOcorrencia
+    Ocorrencia to Avaliacao
+    Ocorrencia to Vitima
+}
+
+relationship OneToMany {
+    Sexo to Vitima
+}
+
+relationship OneToMany {
+    ClassificacaoVitima to Vitima
+}
+
+relationship OneToMany {
+    Vitima to VitimaAvaliacaoOrientacao
+    Vitima to DecisaoTecnica
+}
+
+relationship OneToMany {
+    TipoLogradouro to Vitima
+}
+
+relationship OneToMany {
+    Intercorrencias to DecisaoTecnica
+}
+
+relationship OneToMany {
+    UnidadeDestino to DecisaoTecnica
+}
+
+// Set pagination options
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
